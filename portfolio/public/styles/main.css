@@ -1,0 +1,253 @@
+@font-face {
+    font-family: 'Chopin Script';
+    src: url('../fonts/ChopinScript.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #b27266; /* beige */
+    overflow-x: hidden;
+}
+.header-bg {
+    width: 100vw;
+    height: 30vh;
+    min-height: 200px;
+    background: #f5ecd7;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 40px 0 30px 0;
+    box-sizing: border-box;
+    padding: 5px 0 30px 0; /* Réduit le padding en haut */
+}
+
+.header-logo {
+    height: 90%;
+    max-height: 180px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+.header-logo.left {
+    grid-column: 1 / 2;
+    justify-self: start;
+    margin-left: 20px;
+}
+.header-logo.right {
+    grid-column: 3 / 4;
+    justify-self: end;
+    margin-right: 20px;
+}
+
+.header-text {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bg h1 {
+    font-size: 7vw;
+    min-font-size: 2.5rem;
+    font-family: 'Chopin Script', cursive;
+    letter-spacing: 2px;
+    font-weight:bold;
+    color: #b27266;
+    margin: 0 0 10px 0;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    font-style: italic;
+}
+.header-bg h2 {
+    font-size: 2.5vw;
+    min-font-size: 1.2rem;
+    color: #b27266;
+    font-weight:bold;
+    margin: 0;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    font-style: italic;
+}
+
+
+.nav-bar {
+    display: flex; /* Affiche les onglets en ligne */
+    justify-content: flex-start; /* Aligne les onglets à gauche */
+    align-items: center; /* Centre verticalement */
+    gap: 40px; /* Espace entre les onglets */
+    background: #fffbe9; /* Couleur de fond de la barre */
+    border-bottom: 2px solid #b27266; /* Ligne de séparation */
+    padding: 0; /* Espace intérieur */
+    font-family: Arial, sans-serif; /* Police des onglets */
+    width: 100vw; /* Prend toute la largeur de la fenêtre */
+    left: 0; /* Aligne à gauche */
+    box-sizing: border-box; /* Inclut le padding dans la largeur */
+    position: relative; /* S'assure que la barre reste dans le flux normal */
+     height: 40px;
+}
+
+.nav-bar a {
+    flex: 1 1 0; /* Chaque onglet prend la même largeur */
+    text-align: center; /* Centre le texte dans l'onglet */
+    color: #b27266;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0; /* Plus de padding vertical, la hauteur est gérée par la barre */
+    line-height: 40px; /* Centre verticalement le texte */
+    border-radius: 0; /* Pas de bords arrondis pour un effet onglet */
+    transition: background 0.2s, color 0.2s;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.nav-bar a:hover,
+.nav-bar a.active {
+    background: #b27266; /* Fond au survol/actif */
+    color: #fffbe9; /* Texte clair au survol/actif */
+}
+.gallery {
+     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100vw;
+    box-sizing: border-box;
+    margin-top: 40px; /* Ajoute un espace avec l'entête */
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 20vw;
+    height: 30vw;
+    
+    max-height: 400px;
+   flex: 0 1 22%;    /* 4 cartes par ligne avec un peu d'espace */
+    max-width: 22%;
+    min-width: 200px;
+    margin-bottom: 20px;
+    min-height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+.card-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #b27266;
+    background: #f5ecd7;
+    padding: 10px 0 6px 0;
+    margin: 0;
+    font-size: 1.1rem;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fffbe9; /* Un beige plus clair pour contraster */
+    box-shadow: 0 12px 48px rgba(0,0,0,0.18), 0 3px 12px rgba(0,0,0,0.10);
+   
+}
+.flip-card-front {
+    z-index: 2;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Affiche l'image en entier sans déformation */
+    background: #f5ecd7;
+    display: block;
+}
+.flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Affiche l'image en entier sans déformation */
+    background: #f5ecd7;
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .flip-card {
+        width: 40vw;
+        height: 55vw;
+        max-width: 220px;
+        max-height: 300px;
+    }
+    .header-bg h1 {
+        font-size: 10vw;
+    }
+    .header-bg h2 {
+        font-size: 4vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        gap: 25px;
+    }
+    .flip-card {
+        width: 80vw;
+        height: 50vw;
+        max-width: 95vw;
+        min-width: 120px;
+        min-height: 120px;
+    }
+    .header-bg h1 {
+        font-size: 2.5rem;
+    }
+    .header-bg h2 {
+        font-size: 1.2rem;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
